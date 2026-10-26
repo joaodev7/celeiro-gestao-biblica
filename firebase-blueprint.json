@@ -1,0 +1,83 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with barn savings and settings",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "barnSavings": { "type": "number" },
+        "customEssentialTarget": { "type": "number" },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["userId"]
+    },
+    "Income": {
+      "title": "Income",
+      "description": "Income item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "description": { "type": "string", "maxLength": 200 },
+        "plannedAmount": { "type": "number" },
+        "actualAmount": { "type": "number" },
+        "date": { "type": "string", "maxLength": 30 },
+        "category": { "type": "string", "maxLength": 100 },
+        "notes": { "type": "string", "maxLength": 500 }
+      },
+      "required": ["userId", "description", "plannedAmount", "actualAmount"]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "Expense item categorized by principles",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "description": { "type": "string", "maxLength": 200 },
+        "plannedAmount": { "type": "number" },
+        "actualAmount": { "type": "number" },
+        "category": { "type": "string", "maxLength": 50 },
+        "date": { "type": "string", "maxLength": 30 },
+        "notes": { "type": "string", "maxLength": 500 }
+      },
+      "required": ["userId", "description", "plannedAmount", "actualAmount", "category"]
+    },
+    "Debt": {
+      "title": "Debt",
+      "description": "Debt item for biblical snowball",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "creditor": { "type": "string", "maxLength": 200 },
+        "balance": { "type": "number" },
+        "initialBalance": { "type": "number" },
+        "interestRate": { "type": "number" },
+        "monthlyPayment": { "type": "number" },
+        "dueDateDay": { "type": "number" },
+        "notes": { "type": "string", "maxLength": 500 }
+      },
+      "required": ["userId", "creditor", "balance", "monthlyPayment"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Stores user configuration and barn savings"
+    },
+    "/users/{userId}/incomes/{incomeId}": {
+      "schema": { "$ref": "#/entities/Income" },
+      "description": "User income records"
+    },
+    "/users/{userId}/expenses/{expenseId}": {
+      "schema": { "$ref": "#/entities/Expense" },
+      "description": "User expense records"
+    },
+    "/users/{userId}/debts/{debtId}": {
+      "schema": { "$ref": "#/entities/Debt" },
+      "description": "User debt records"
+    }
+  }
+}

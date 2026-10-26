@@ -1,0 +1,6 @@
+{
+  "name": "Celeiro: O Método José",
+  "description": "Gestão Financeira Bíblica inspirada nos princípios de José no Egito e Provérbios. Diagnóstico da terra, celeiro estratégico em silos, rota de quitação de dívidas e conselheiro bíblico IA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
